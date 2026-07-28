@@ -3,12 +3,13 @@ from .models import Project
 from .serializers import ProjectSerializer
 from rest_framework.permissions import IsAuthenticated
 from django.db.models import Q
+from .permissions import IsProjectOwnerOrReadOnly
 # Create your views here.
 
 class ProjectViewSet(viewsets.ModelViewSet):
     #queryset = Project.objects.all()
     serializer_class = ProjectSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated,IsProjectOwnerOrReadOnly]
 
     def get_queryset(self):
         user = self.request.user

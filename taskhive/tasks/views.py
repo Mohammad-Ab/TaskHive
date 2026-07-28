@@ -3,12 +3,13 @@ from .models import Task
 from .serializers import TaskSerializer
 from rest_framework.permissions import IsAuthenticated
 from django.db.models import Q
+from .permissions import IsTaskOwnerOrCreator
 # Create your views here.
 
 class TaskViewSet(viewsets.ModelViewSet):
     #queryset = Task.objects.all()
     serializer_class = TaskSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated,IsTaskOwnerOrCreator]
 
     def get_queryset(self):
         user = self.request.user
