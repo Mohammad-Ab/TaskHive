@@ -23,6 +23,11 @@ from rest_framework_simplejwt.views import (
 )
 from projects.views import ProjectViewSet
 from tasks.views import TaskViewSet
+from drf_spectacular.views import (
+    SpectacularAPIView,
+    SpectacularSwaggerView,
+    SpectacularRedocView,
+)
 
 router = DefaultRouter()
 
@@ -47,5 +52,11 @@ urlpatterns = [
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
     path('api/', include(router.urls)),
+
+    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
+
+    path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'),name='swagger-ui',),
+
+    path('api/redoc/', SpectacularRedocView.as_view(url_name='schema'),name='redoc',),
 
 ]
