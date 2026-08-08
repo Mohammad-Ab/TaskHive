@@ -143,4 +143,9 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'taskhive.pagination.TaskHivePagination',
 }
 
-
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'TaskHive API',
+    'DESCRIPTION': 'Project management API built with Django REST Framework',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+}
